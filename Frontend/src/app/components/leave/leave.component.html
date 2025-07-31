@@ -1,0 +1,98 @@
+<div class="leave-container">
+  <div class="leave-header">
+    <h1>Leave Management</h1>
+    <p>View your leave balance and history</p>
+  </div>
+
+  <div *ngIf="isLoading" class="loading">
+    <div class="loading-spinner"></div>
+    <p>Loading leave details...</p>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-card">
+    <h3>Error</h3>
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <div *ngIf="leaveData && !isLoading" class="leave-content">
+    <!-- Leave Summary Cards -->
+    <div class="summary-grid">
+      <div class="summary-card quota">
+        <div class="card-icon">📅</div>
+        <div class="card-content">
+          <h3>Total Quota</h3>
+          <p class="card-value">{{ leaveData.EV_TOTAL_QUOTA }} days</p>
+        </div>
+      </div>
+      
+      <div class="summary-card taken">
+        <div class="card-icon">🏖️</div>
+        <div class="card-content">
+          <h3>Leave Taken</h3>
+          <p class="card-value">{{ leaveData.EV_LEAVE_TAKEN }} days</p>
+        </div>
+      </div>
+      
+      <div class="summary-card hours">
+        <div class="card-icon">⏰</div>
+        <div class="card-content">
+          <h3>Total Hours</h3>
+          <p class="card-value">{{ leaveData.EV_HOURS.trim() }} hrs</p>
+        </div>
+      </div>
+      
+      <div class="summary-card balance">
+        <div class="card-icon">✅</div>
+        <div class="card-content">
+          <h3>Balance</h3>
+          <p class="card-value">{{ leaveData.EV_DAYS.trim() }} days</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Leave Absences -->
+    <div class="section-card">
+      <h2>Leave History</h2>
+      <div *ngIf="leaveData.ET_ABSENCES.length === 0" class="empty-state">
+        <p>No leave records found</p>
+      </div>
+      <div *ngIf="leaveData.ET_ABSENCES.length > 0" class="leave-list">
+        <div *ngFor="let absence of leaveData.ET_ABSENCES" 
+             class="leave-item" 
+             [ngClass]="getLeaveTypeClass(absence.REASON)">
+          <div class="leave-dates">
+            <span class="start-date">{{ formatDate(absence.BEGDA) }}</span>
+            <span class="date-separator">to</span>
+            <span class="end-date">{{ formatDate(absence.ENDDA) }}</span>
+          </div>
+          <div class="leave-details">
+            <h4>{{ absence.REASON }}</h4>
+            <p class="leave-duration">{{ absence.ABWTG }} days</p>
+          </div>
+          <div class="leave-stats">
+            <span class="stat">Hours: {{ absence.STDAZ }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Leave Quotas -->
+    <div class="section-card">
+      <h2>Leave Quotas</h2>
+      <div *ngIf="leaveData.ET_QUOTAS.length === 0" class="empty-state">
+        <p>No quota records found</p>
+      </div>
+      <div *ngIf="leaveData.ET_QUOTAS.length > 0" class="quota-list">
+        <div *ngFor="let quota of leaveData.ET_QUOTAS" class="quota-item">
+          <div class="quota-header">
+            <h4>{{ quota.REASON }}</h4>
+            <span class="quota-amount">{{ quota.ANZHL }} days</span>
+          </div>
+          <div class="quota-period">
+            <span>{{ formatDate(quota.BEGDA) }} - {{ formatDate(quota.ENDDA) }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

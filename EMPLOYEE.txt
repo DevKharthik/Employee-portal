@@ -1,0 +1,38 @@
+EMPLOYEE
+------------
+
+LOGIN
+---------
+FUNCTION GROUP------> ZPE_EMPLOYEE
+FUNCTION MODULE -----> ZEMPLOYEE_LOGIN_FM
+LOGIN TABLE NAME ---> ZPE_LOGIN_T
+SD-------------------> ZPE_LOGIN_SD
+url------------------> 	http://AZKTLDS5CP.kcloud.com:8000/sap/bc/srt/scs/sap/zpe_login_sd?sap-client=100
+sd-------------------> urn:sap-com:document:sap:rfc:functions
+
+
+PROFILE
+----------
+STRUCTURE-------------> ZPE_PROFILE_S
+FUNCTION MODULE-------> ZEMPLOYEE_PROFILE_FM
+SD---------------------> ZPE_PROFILE_SD
+URL---------------------> http://AZKTLDS5CP.kcloud.com:8000/sap/bc/srt/scs/sap/zpe_profile_sd?sap-client=100
+sd-------------------> urn:sap-com:document:sap:rfc:functions
+
+
+LEAVE
+----------
+STRUCTURE 1----> ZPE_LEAVE_S
+TT - 1----------> ZPE_LEAVE_TT
+STRUCTURE 2--------> ZPE_LEAVE_S 
+TT - 2--------------> ZPE_QUOTA_TT1
+FM------------------> ZEMPLOYEE_LEAVE_FM
+SD------------------->ZPE_LEAVE_SD
+url-------------------> http://AZKTLDS5CP.kcloud.com:8000/sap/bc/srt/scs/sap/zpe_leave_sd?sap-client=100
+
+PAYSLIP
+--------
+STRUCTURE ------> ZPE_PAYSLIP_S
+FM--------------> ZEMPLOYEE_PAYSLIP_FM
+sd--------------> ZPE_PAYSLIP_SD
+url-------------> http://AZKTLDS5CP.kcloud.com:8000/sap/bc/srt/scs/sap/zpe_payslip_sd?sap-client=100

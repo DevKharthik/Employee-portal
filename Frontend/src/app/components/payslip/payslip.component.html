@@ -1,0 +1,156 @@
+<div class="payslip-container">
+  <div class="payslip-header">
+    <h1>Payslip Details</h1>
+    <p>View your salary and compensation information</p>
+  </div>
+
+  <div *ngIf="isLoading" class="loading">
+    <div class="loading-spinner"></div>
+    <p>Loading payslip...</p>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-card">
+    <h3>Error</h3>
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <div *ngIf="payslipData && !isLoading" class="payslip-content">
+    <!-- Employee Info Header -->
+    <div class="employee-header">
+      <div class="employee-info">
+        <h2>Employee: {{ payslipData.PERNR }}</h2>
+        <p class="period">Pay Period: {{ formatDate(payslipData.BEGDA) }} - {{ formatDate(payslipData.ENDDA) }}</p>
+      </div>
+      <div class="payslip-logo">
+        <div class="logo-circle">💰</div>
+      </div>
+    </div>
+
+    <!-- Salary Summary -->
+    <div class="summary-grid">
+      <div class="summary-card salary">
+        <div class="card-icon">💵</div>
+        <div class="card-content">
+          <h3>Monthly Salary</h3>
+          <p class="card-value">{{ formatCurrency(payslipData.SALARY, payslipData.CURR) }}</p>
+        </div>
+      </div>
+      
+      <div class="summary-card annual">
+        <div class="card-icon">📊</div>
+        <div class="card-content">
+          <h3>Annual Salary</h3>
+          <p class="card-value">{{ formatCurrency(payslipData.ANNUAL, payslipData.CURR) }}</p>
+        </div>
+      </div>
+      
+      <div class="summary-card hours">
+        <div class="card-icon">⏱️</div>
+        <div class="card-content">
+          <h3>Work Hours</h3>
+          <p class="card-value">{{ payslipData.WORKHRS }} hrs</p>
+        </div>
+      </div>
+      
+      <div class="summary-card capacity">
+        <div class="card-icon">📈</div>
+        <div class="card-content">
+          <h3>Capacity</h3>
+          <p class="card-value">{{ payslipData.CAPACITY }}%</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detailed Information -->
+    <div class="details-grid">
+      <div class="detail-card">
+        <h3>Employment Details</h3>
+        <div class="detail-row">
+          <span class="label">Employee Number:</span>
+          <span class="value">{{ payslipData.PERNR }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Cost Center:</span>
+          <span class="value">{{ payslipData.COSTCENTER }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Pay Type:</span>
+          <span class="value">{{ payslipData.PAYTYPE }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Pay Area:</span>
+          <span class="value">{{ payslipData.PAYAREA }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Pay Group:</span>
+          <span class="value">{{ payslipData.PAYGROUP }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Pay Level:</span>
+          <span class="value">{{ payslipData.PAYLEVEL }}</span>
+        </div>
+      </div>
+
+      <div class="detail-card">
+        <h3>Compensation</h3>
+        <div class="detail-row">
+          <span class="label">Wage Type:</span>
+          <span class="value">{{ payslipData.WAGETYPE }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Currency:</span>
+          <span class="value">{{ payslipData.CURR }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Monthly Salary:</span>
+          <span class="value highlight">{{ formatCurrency(payslipData.SALARY, payslipData.CURR) }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Annual Salary:</span>
+          <span class="value highlight">{{ formatCurrency(payslipData.ANNUAL, payslipData.CURR) }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Work Capacity:</span>
+          <span class="value">{{ payslipData.CAPACITY }}%</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Working Hours:</span>
+          <span class="value">{{ payslipData.WORKHRS }} hours</span>
+        </div>
+      </div>
+
+      <div class="detail-card">
+        <h3>Banking Information</h3>
+        <div *ngIf="!payslipData.BANK_NAME && !payslipData.ACC_NO" class="empty-banking">
+          <p>No banking information available</p>
+        </div>
+        <div *ngIf="payslipData.BANK_NAME || payslipData.ACC_NO">
+          <div class="detail-row" *ngIf="payslipData.BANK_NAME">
+            <span class="label">Bank Name:</span>
+            <span class="value">{{ payslipData.BANK_NAME }}</span>
+          </div>
+          <div class="detail-row" *ngIf="payslipData.BANK_KEY">
+            <span class="label">Bank Code:</span>
+            <span class="value">{{ payslipData.BANK_KEY }}</span>
+          </div>
+          <div class="detail-row" *ngIf="payslipData.ACC_NO">
+            <span class="label">Account Number:</span>
+            <span class="value">{{ payslipData.ACC_NO }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-card">
+        <h3>Pay Period</h3>
+        <div class="detail-row">
+          <span class="label">Start Date:</span>
+          <span class="value">{{ formatDate(payslipData.BEGDA) }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">End Date:</span>
+          <span class="value">{{ formatDate(payslipData.ENDDA) }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="sidebar">
+  <div class="sidebar-header">
+    <h2>HR Portal</h2>
+  </div>
+  
+  <nav class="sidebar-nav">
+    <a routerLink="/dashboard" routerLinkActive="active" class="nav-item">
+      <span class="nav-icon">🏠</span>
+      <span class="nav-text">Dashboard</span>
+    </a>
+    <a routerLink="/profile" routerLinkActive="active" class="nav-item">
+      <span class="nav-icon">👤</span>
+      <span class="nav-text">Profile</span>
+    </a>
+    <a routerLink="/leave" routerLinkActive="active" class="nav-item">
+      <span class="nav-icon">📅</span>
+      <span class="nav-text">Leave</span>
+    </a>
+    <a routerLink="/payslip" routerLinkActive="active" class="nav-item">
+      <span class="nav-icon">💰</span>
+      <span class="nav-text">Payslip</span>
+    </a>
+  </nav>
+  
+  <div class="sidebar-footer">
+    <button (click)="logout()" class="logout-btn">
+      <span class="nav-icon">🚪</span>
+      <span class="nav-text">Logout</span>
+    </button>
+  </div>
+</div>

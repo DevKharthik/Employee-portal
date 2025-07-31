@@ -1,0 +1,35 @@
+<div class="dashboard-container">
+  <div class="dashboard-header">
+    <h1>Dashboard</h1>
+    <p>Welcome to HR Portal</p>
+  </div>
+
+  <div class="dashboard-cards">
+    <div class="dashboard-card" (click)="navigateToProfile()">
+      <div class="card-icon">👤</div>
+      <div class="card-content">
+        <h3>Employee Profile</h3>
+        <p>View your personal and employment details</p>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="dashboard-card" (click)="navigateToLeave()">
+      <div class="card-icon">📅</div>
+      <div class="card-content">
+        <h3>Leave Request</h3>
+        <p>Check leave balance and history</p>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="dashboard-card" (click)="navigateToPayslip()">
+      <div class="card-icon">💰</div>
+      <div class="card-content">
+        <h3>Pay Slip</h3>
+        <p>View salary and payment details</p>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+  </div>
+</div>

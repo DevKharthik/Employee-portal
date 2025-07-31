@@ -1,0 +1,110 @@
+<div class="profile-container">
+  <div class="profile-header">
+    <h1>Employee Profile</h1>
+    <p>Personal and company information</p>
+  </div>
+
+  <div *ngIf="isLoading" class="loading">
+    <div class="loading-spinner"></div>
+    <p>Loading profile...</p>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-card">
+    <h3>Error</h3>
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <div *ngIf="profileData && !isLoading" class="profile-content">
+    <div class="profile-card">
+      <div class="profile-avatar">
+        <div class="avatar-circle">
+          {{ getInitials() }}
+        </div>
+      </div>
+      
+      <div class="profile-info">
+        <h2>{{ profileData.FIRST_NAME }} {{ profileData.LAST_NAME }}</h2>
+        <p class="employee-id">Employee ID: {{ profileData.PERSNO }}</p>
+        <p class="department">{{ profileData.EMP_SUBGROUP }}</p>
+      </div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Personal Information</h3>
+        <div class="info-row">
+          <span class="label">Email:</span>
+          <span class="value">{{ profileData.EMAIL }}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Gender:</span>
+          <span class="value">{{ profileData.GENDER }}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Date of Birth:</span>
+          <span class="value">{{ formatDate(profileData.DOB) }}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Nationality:</span>
+          <span class="value">{{ profileData.NATIONALITY_TXT }}</span>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h3>Employment Details</h3>
+        <div class="info-row">
+          <span class="label">Join Date:</span>
+          <span class="value">{{ formatDate(profileData.JOIN_DATE) }}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Employee Group:</span>
+          <span class="value">{{ profileData.EMP_GROUP }}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Personnel Area:</span>
+          <span class="value">{{ profileData.PERS_AREA }}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Personnel Subarea:</span>
+          <span class="value">{{ profileData.PERS_SUBAREA }}</span>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h3>Company Information</h3>
+        <div class="info-row">
+          <span class="label">Company:</span>
+          <span class="value">{{ profileData.COMPANY }}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Address:</span>
+          <span class="value">{{ profileData.COM_STREET }}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">City:</span>
+          <span class="value">{{ profileData.COM_CITY }}, {{ profileData.COMP_PIN }}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Country:</span>
+          <span class="value">{{ profileData.COM_COUNTRY_TXT }}</span>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h3>Personal Address</h3>
+        <div class="info-row">
+          <span class="label">City:</span>
+          <span class="value">{{ profileData.CITY }}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">PIN Code:</span>
+          <span class="value">{{ profileData.PIN_CODE }}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Country:</span>
+          <span class="value">{{ profileData.COUNTRY_TXT }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

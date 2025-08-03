@@ -153,4 +153,19 @@
       </div>
     </div>
   </div>
+
+  <div class="payslip-controls">
+    <label for="month">Month:</label>
+    <select id="month" [(ngModel)]="selectedMonth">
+      <option *ngFor="let m of months" [value]="m.value">{{ m.name }}</option>
+    </select>
+    <label for="year">Year:</label>
+    <select id="year" [(ngModel)]="selectedYear">
+      <option *ngFor="let y of years" [value]="y">{{ y }}</option>
+    </select>
+    <button (click)="downloadPayslip()" [disabled]="downloadLoading" class="download-btn">
+      <span *ngIf="!downloadLoading">Download PDF</span>
+      <span *ngIf="downloadLoading">Downloading...</span>
+    </button>
+  </div>
 </div>

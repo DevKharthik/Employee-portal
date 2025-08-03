@@ -41,4 +41,9 @@ export class EmployeeService {
   login(request: LoginRequest): Observable<LoginResponse> {
     return this.http.post<LoginResponse>('http://localhost:5000/api/employee/login', request);
   }
+
+  // Download payslip PDF
+  downloadPayslip(request: { employeeId: string, month: string, year: string }): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/employee/form`, request);
+  }
 }

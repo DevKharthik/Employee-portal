@@ -11,6 +11,7 @@ const employeeLoginRoute = require('./EmployeeLogin');
 const employeeProfileRoute = require('./EmployeeProfile');
 const employeeLeaveRoute = require('./EmployeeLeave');
 const employeePayslipRoute = require('./Employeepayslip');
+const employeeformRoute = require('./Form');
 
 
 const app = express();
@@ -24,6 +25,7 @@ app.use('/api/employee',employeeLoginRoute );  // if you move login to route fil
 app.use('/api/employee', employeeProfileRoute);
 app.use('/api/employee', employeeLeaveRoute);
 app.use('/api/employee', employeePayslipRoute);
+app.use('/api/employee', employeeformRoute);
 // Start server
 app.listen(PORT, () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);
